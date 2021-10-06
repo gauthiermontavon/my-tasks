@@ -1,0 +1,72 @@
+
+<mat-tab-group>
+  <mat-tab label="Semaine">
+
+
+
+    <div id="planning-content">
+    <div class="zone-container">
+      <h2>Today</h2>
+      <!--[cdkDropListConnectedTo]="[weekList,nextList]"-->
+      <div
+        cdkDropList
+        #todayList="cdkDropList"
+        [cdkDropListData]="today"
+
+        class="zone-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="zone-box" *ngFor="let item of today" cdkDrag  [matMenuTriggerFor]="rightMenu" (click)="clickOnTask($event)" (contextmenu)="openRightMenu($event)">
+          {{item.title}}
+          <span>
+
+            <mat-icon id="btn-archive-task-{{item.id}}" *ngIf="isTaskDone(item)" aria-hidden="false" aria-label="Example home icon"
+            style="display:inline-flex;vertical-align:middle;">assignment_returned</mat-icon>
+
+            <mat-checkbox [checked]="isTaskDone(item)"
+                        (change)="setTaskDone(item.id,$event.checked)">
+            </mat-checkbox>
+          </span>
+        </div>
+
+        <div class="zone-box zone-box-new" contentEditable="true" (keydown)="saveTask('today',$event)"
+        >New</div>
+        <mat-menu #rightMenu="matMenu" yPosition="below">
+            <button mat-menu-item>Finish</button>
+        </mat-menu>
+      </div>
+    </div>
+
+
+    <!--
+    <div class="zone-container">
+      <h2>This week</h2>
+
+      <div
+        cdkDropList
+        #weekList="cdkDropList"
+        [cdkDropListData]="week"
+        [cdkDropListConnectedTo]="[todayList,nextList]"
+        class="zone-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="zone-box" *ngFor="let item of week" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+
+    <div class="zone-container">
+      <h2>Next</h2>
+
+      <div
+        cdkDropList
+        #nextList="cdkDropList"
+        [cdkDropListData]="next"
+        [cdkDropListConnectedTo]="[todayList,weekList]"
+        class="zone-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="zone-box" *ngFor="let item of next" cdkDrag>{{item}}</div>
+      </div>
+    </div>-->
+    </div>
+  </mat-tab>
+  <mat-tab label="Archives">Archives</mat-tab>
+
+</mat-tab-group>
