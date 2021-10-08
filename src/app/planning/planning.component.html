@@ -15,20 +15,20 @@
 
         class="zone-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="zone-box" *ngFor="let item of today" cdkDrag  [matMenuTriggerFor]="rightMenu" (click)="clickOnTask($event)" (contextmenu)="openRightMenu($event)">
+        <div class="zone-box" *ngFor="let item of today" cdkDrag>
           {{item.title}}
           <span>
 
-            <mat-icon id="btn-archive-task-{{item.id}}" *ngIf="isTaskDone(item)" aria-hidden="false" aria-label="Example home icon"
+            <mat-icon id="btn-archive-task-{{item.$loki}}" *ngIf="isTaskDone(item)" aria-hidden="false" aria-label="Example home icon"
             style="display:inline-flex;vertical-align:middle;">assignment_returned</mat-icon>
 
             <mat-checkbox [checked]="isTaskDone(item)"
-                        (change)="setTaskDone(item.id,$event.checked)">
+                        (change)="setTaskDone(item.$loki,$event.checked)">
             </mat-checkbox>
           </span>
         </div>
 
-        <div class="zone-box zone-box-new" contentEditable="true" (keydown)="saveTask('today',$event)"
+        <div class="zone-box zone-box-new" contentEditable="true" (keydown.enter)="saveTask(1,$event)"
         >New</div>
         <mat-menu #rightMenu="matMenu" yPosition="below">
             <button mat-menu-item>Finish</button>

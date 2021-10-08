@@ -32,3 +32,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ##links
 https://fonts.google.com/icons?selected=Material+Icons
+
+##thingstoremember
+() => angular output
+[] => angular input

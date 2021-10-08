@@ -1,5 +1,5 @@
 export interface Task {
-  id:number;
+  //$loki:number;
   title:string;
   priority:number;
   category:number;
