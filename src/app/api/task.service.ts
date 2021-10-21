@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { Observable, pipe, combineLatest } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
-import { Task, Mutation } from '../interface/task';
+import { Task, Mutation, ResultApiOneTask } from '../interface/task';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class TaskService {
   // persistent functions
   saveTasks(tasks: Task[]): Observable<Task[]> {
     console.log('ok lets save all to database:' + JSON.stringify(tasks));
-
+    throw new Error('method not verified - please dont use for now...');
     const observables$: Observable<Task>[] = [];
 
     const httpOptions = {
@@ -43,7 +43,7 @@ export class TaskService {
 
   }
 
-  saveTask(task: Task): Observable<Task> {
+  saveTask(task: Task): Observable<ResultApiOneTask> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -59,13 +59,10 @@ export class TaskService {
     console.log('save task, complete data:' + JSON.stringify(data));
     //const saveTask$:Observable<Task> =
 
-    return this.http.post<Task>(this.apiBaseUrl + '/upsert', data, httpOptions);
+    return this.http.post<ResultApiOneTask>(this.apiBaseUrl + '/upsert', data, httpOptions);
 
     //return saveTask$;
   }
-
-
-
 
   listActiveTasks(): Observable<Task[]> {
     console.log('call listTasks');
@@ -85,22 +82,28 @@ export class TaskService {
   }
 
 
-
   getStateAt(task: Task, date: number): Mutation {
     //TODO: handle date
     //console.log('getStateAt');
-
+    throw new Error('function is not yet implemented');
     return task.history[0];
     //return {since:'20211006-080011',state:2,zone:1};
   }
 
-
-
-
-
   getLastMutation(task: Task): Mutation {
-
     return task.history[task.history.length - 1];
+  }
+
+  extractMetaFromTitle(title: string): Object {
+    var infosTitle = title.split(';');
+    for (var i = 0; i < infosTitle.length; i++) {
+      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' + infosTitle[i]);
+    }
+
+    return new Object();
+
+
+
   }
 
 

@@ -19,6 +19,9 @@ export interface Mutation {
   //2:week
   //3:next
   zone: number;
+}
 
-
+export interface ResultApiOneTask {
+  message: string,
+  doc: Task;
 }

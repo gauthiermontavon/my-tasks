@@ -131,8 +131,12 @@ export class PlanningComponent implements OnInit {
     if (zone == 2) { title = this.newTaskWeekTitle; }
     if (zone == 3) { title = this.newTaskNextTitle; }
     //let title = (event.target as HTMLElement).textContent;
-
-    if (title == null) { title = ''; }
+    let meta = null;
+    if (title == null) { title = 'TITRE NON DEFINI'; }
+    else {
+      meta = this.taskService.extractMetaFromTitle(title);
+    }
+    console.log('meta ?:' + JSON.stringify(meta));
     const taskToAdd = {
       $loki: 0,
       title: title.toString(),
@@ -147,8 +151,8 @@ export class PlanningComponent implements OnInit {
 
       this.taskService.saveTask(taskToAdd).subscribe(result => {
         //attention property $loki est effacé dans saveTask, pour faire appel à upsert
-        taskToAdd['$loki'] = result.$loki;
-        console.log(' task was created ! $loki :' + result.$loki);
+        taskToAdd['$loki'] = result.doc.$loki;
+        console.log(' task was created ! $loki :' + result.doc.$loki);
         console.log(' task was created ! original task :' + JSON.stringify(taskToAdd));
         console.log(' task was created ! :' + JSON.stringify(result));
         this.today.push(taskToAdd);
@@ -160,7 +164,7 @@ export class PlanningComponent implements OnInit {
     if (zone == 2) {
 
       this.taskService.saveTask(taskToAdd).subscribe(result => {
-
+        taskToAdd['$loki'] = result.doc.$loki;
         console.log(' task was created ! :' + JSON.stringify(result));
         this.week.push(taskToAdd);
         this.newTaskWeekTitle = 'Nouvelle tâche';
@@ -171,7 +175,7 @@ export class PlanningComponent implements OnInit {
     if (zone == 3) {
 
       this.taskService.saveTask(taskToAdd).subscribe(result => {
-
+        taskToAdd['$loki'] = result.doc.$loki;
         console.log(' task was created ! :' + JSON.stringify(result));
         this.next.push(taskToAdd);
         this.newTaskNextTitle = 'Nouvelle tâche';
@@ -189,7 +193,7 @@ export class PlanningComponent implements OnInit {
     const taskResult = this.today.find(obj => obj.$loki === id);
     if (taskResult) {
       console.log('task obj;' + JSON.stringify(taskResult));
-      let mutation: Mutation = this.taskService.getStateAt(taskResult, Date.now());
+      let mutation: Mutation = taskResult.history[0];
       if (done) { mutation.state = 2 }
       else { mutation.state = 0 };
       taskResult.history[0] = mutation;
@@ -205,7 +209,7 @@ export class PlanningComponent implements OnInit {
   }
 
   isTaskDone(task: Task): boolean {
-    let mutation: Mutation = this.taskService.getStateAt(task, Date.now());
+    let mutation: Mutation = task.history[0];
     let returnVal = mutation.state == 2 ? true : false;
     //console.log('isTaskDone:' + returnVal);
     return mutation.state == 2 ? true : false;
@@ -249,7 +253,7 @@ export class PlanningComponent implements OnInit {
     } else {
       returnClass = returnClass + "";
     }
-    console.log('class for task (' + task.priority + ') ' + task.title + ' is:' + returnClass);
+    //console.log('class for task (' + task.priority + ') ' + task.title + ' is:' + returnClass);
     return returnClass;
 
 
