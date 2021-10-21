@@ -1,8 +1,10 @@
 <div id="container-bottom-sheet">
-  <div id="header"><input style="outline:none;border:none;" [(ngModel)]="currentTask.title" />
-    <button mat-stroked-button (click)="enableTitle()">Edit</button>
-    <button mat-stroked-button (click)="close('upd',$event)">Save</button>
-    <button mat-stroked-button (click)="close('del',$event)">Delete</button>
+  <div id="header">
+    <div id="left"><input style="outline:none;border:none;" [(ngModel)]="currentTask.title" /></div>
+    <div id="right"><button mat-stroked-button (click)="enableTitle()">Edit</button>
+      <button mat-stroked-button (click)="close('upd',$event)">Save</button>
+      <button mat-stroked-button (click)="close('del',$event)">Delete</button>
+    </div>
   </div>
   <div id="left">
     <mat-form-field class="field-full-width" appearance="fill">

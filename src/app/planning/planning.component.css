@@ -84,25 +84,35 @@
 }
 
 .cat-1-color{
-    /*color:purple;*/
-    background-color:thistle;
+    /*color:purple;
+    background-color:thistle;*/
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, #f6b1d9 0%, rgba(255,255,255,1) 2%);
 }
 
 .cat-2-color{
-    /*color:green;*/
-    background-color:palegreen;
+    /*color:green;
+    background-color:palegreen;*/
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, #b1f6b2 0%, rgba(255,255,255,1) 2%);
+
 }
 
 .cat-4-color{
     /*color:cyan;*/
-    background-color:lightcyan;
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, #b8eef2 0%, rgba(255,255,255,1) 2%);
 }
 
 .cat-3-color{
-    /*color:black;*/
-    background-color:lightgrey;
+    /*color:black;
+    background-color:lightgrey;*/
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, #c0c0c1 0%, rgba(255,255,255,1) 2%);
 }
 .cat-5-color{
-    /*color:orange;*/
-    background-color:peachpuff;
+    /*color:orange;
+    background-color:peachpuff;*/
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(249,181,21,1) 0%, rgba(255,255,255,1) 2%);
 }

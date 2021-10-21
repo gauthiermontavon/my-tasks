@@ -245,11 +245,11 @@ export class PlanningComponent implements OnInit {
     }
 
     if (priority != undefined) {
-      returnClass = returnClass + " priority-" + category.toString();
+      returnClass = returnClass + " priority-" + priority.toString();
     } else {
       returnClass = returnClass + "";
     }
-
+    console.log('class for task (' + task.priority + ') ' + task.title + ' is:' + returnClass);
     return returnClass;
 
 

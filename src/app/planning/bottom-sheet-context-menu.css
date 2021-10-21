@@ -11,8 +11,22 @@
   margin-top:15px;
   margin-bottom:30px;
   text-align: center;
+  display:flex;
 
 }
+
+#header div{
+  flex-flow:column;
+}
+
+#header div#left{
+  text-align: left;
+}
+#header div#right{
+text-align: right;
+}
+
+
 #header input{
   font-weight: bold;
   font-size: 1.2em;
