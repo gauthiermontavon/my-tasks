@@ -1,0 +1,98 @@
+#container-bottom-sheet{
+  /*margin:10px auto 50px auto;*/
+  width:100%;
+
+
+}
+
+#header{
+  float:left;
+  width:100%;
+  margin-top:15px;
+  margin-bottom:30px;
+  text-align: center;
+
+}
+#header input{
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#left{
+  float:left;
+  width:50%;
+  display:flex;
+  flex-flow: row wrap;
+
+}
+
+.field-full-width{
+  width:100%;
+}
+
+#right{
+  float:left;
+  width:48%;
+  padding:5px;
+
+}
+
+.btn-p3-color{
+  color:green;
+}
+.btn-p2-color{
+  color:orange;
+}
+.btn-p1-color{
+  color:red;
+}
+
+.cat-1-color{
+    color:purple;
+    /*background-color:thistle;*/
+}
+
+.cat-2-color{
+    color:green;
+    /*background-color:palegreen;*/
+}
+
+.cat-4-color{
+    color:cyan;
+    /*background-color:lightcyan;*/
+}
+
+.cat-3-color{
+    color:black;
+    /*background-color:lightgrey;*/
+}
+.cat-5-color{
+    color:orange;
+    /*background-color:peachpuff;*/
+}
+
+article{
+ flex:1 200px;
+ display:flex;
+ margin:5px;
+}
+
+article:nth-of-type(1){
+  flex:1 200px;
+  display:flex;
+  flex-flow:row;
+}
+
+.example-label {
+
+
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  width: 490px;
+
+
+}

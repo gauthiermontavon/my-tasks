@@ -1,0 +1,75 @@
+<div id="container-bottom-sheet">
+  <div id="header"><input style="outline:none;border:none;" [(ngModel)]="currentTask.title" />
+    <button mat-stroked-button (click)="enableTitle()">Edit</button>
+    <button mat-stroked-button (click)="close('upd',$event)">Save</button>
+    <button mat-stroked-button (click)="close('del',$event)">Delete</button>
+  </div>
+  <div id="left">
+    <mat-form-field class="field-full-width" appearance="fill">
+      <mat-label>Notes</mat-label>
+      <textarea rows="10" matInput placeholder="Ex. It makes me feel..." [(ngModel)]="currentTask.description"></textarea>
+    </mat-form-field>
+
+
+    <!--
+      <section>
+    </section>
+-->
+
+  </div>
+  <div id="right">
+    <article>
+      <div class="example-label">Priority</div>
+      <div class="example-button-row">
+        <mat-button-toggle-group name="fontStyle" [(ngModel)]="currentTask.priority" aria-label="Font Style">
+          <mat-button-toggle value="1">P1</mat-button-toggle>
+          <mat-button-toggle value="2">P2</mat-button-toggle>
+          <mat-button-toggle value="3">P3</mat-button-toggle>
+        </mat-button-toggle-group>
+
+
+        <!--
+        <button mat-stroked-button class="btn-p1-color">P1</button>
+        <button mat-stroked-button class="btn-p2-color">P2</button>
+        <button mat-stroked-button class="btn-p3-color">P3</button>-->
+
+      </div>
+    </article>
+    <mat-divider></mat-divider>
+    <article>
+      <div class="example-label">Category</div>
+      <div class="example-button-row">
+        <mat-button-toggle-group #groupCategory="matButtonToggleGroup" [(ngModel)]="currentTask.category" (change)="toggleCategory($event)" style="flex-wrap:wrap;" name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle value="1" class="cat-1-color">Analyse/Réqui</mat-button-toggle>
+          <mat-button-toggle value="2" class="cat-2-color">Pièges</mat-button-toggle>
+          <mat-button-toggle value="3" class="cat-3-color">Administratif</mat-button-toggle>
+          <mat-button-toggle value="4" class="cat-4-color">Réseau PJ</mat-button-toggle>
+          <mat-button-toggle value="5" class="cat-5-color">Divers</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <!--
+        <button mat-stroked-button class="cat-1-color" (click)="toogleCategory()">Analyse/Réqui</button>
+        <button mat-stroked-button class="cat-2-color" (click)="toogleCategory()">Pièges</button>
+        <button mat-stroked-button class="cat-3-color" (click)="toogleCategory()">Administratif</button>
+        <button mat-stroked-button class="cat-4-color" (click)="toogleCategory()">Sport et santé</button>
+        <button mat-stroked-button class="cat-5-color" (click)="toogleCategory()">Divers</button>
+-->
+      </div>
+    </article>
+
+  </div>
+</div>
+
+<!--
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Favorite food</mat-label>
+    <input matInput placeholder="Ex. Pizza" value="Sushi">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Leave a comment</mat-label>
+    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+  </mat-form-field>
+</form>
+-->

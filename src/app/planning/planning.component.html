@@ -1,72 +1,56 @@
-
 <mat-tab-group>
   <mat-tab label="Semaine">
 
 
 
     <div id="planning-content">
-    <div class="zone-container">
-      <h2>Today</h2>
-      <!--[cdkDropListConnectedTo]="[weekList,nextList]"-->
-      <div
-        cdkDropList
-        #todayList="cdkDropList"
-        [cdkDropListData]="today"
+      <div class="zone-container">
+        <h2>Today</h2>
 
-        class="zone-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="zone-box" *ngFor="let item of today" cdkDrag>
-          {{item.title}}
-          <span>
+        <div cdkDropList #todayList="cdkDropList" [cdkDropListData]="today" [cdkDropListConnectedTo]="[weekList,nextList]" class="zone-list" (cdkDropListDropped)="drop($event)">
 
-            <mat-icon id="btn-archive-task-{{item.$loki}}" *ngIf="isTaskDone(item)" aria-hidden="false" aria-label="Example home icon"
-            style="display:inline-flex;vertical-align:middle;">assignment_returned</mat-icon>
+          <div class="zone-box" [ngClass]="classCategoryandPriority(item)" *ngFor="let item of today" (click)="openBottomSheet(item)" cdkDrag>
+            {{item.title}}
+            <span>
 
-            <mat-checkbox [checked]="isTaskDone(item)"
-                        (change)="setTaskDone(item.$loki,$event.checked)">
-            </mat-checkbox>
-          </span>
+              <mat-icon id="btn-archive-task-{{item.$loki}}" *ngIf="isTaskDone(item)" aria-hidden="false" aria-label="Example home icon" style="display:inline-flex;vertical-align:middle;cursor:pointer;"
+                (click)="$event.stopPropagation();archiveTask(item)">
+                assignment_returned</mat-icon>
+              <mat-checkbox [checked]="isTaskDone(item)" (change)="setTaskDone(item.$loki,$event)" (click)="$event.stopPropagation()">
+              </mat-checkbox>
+            </span>
+
+          </div>
+          <div class="zone-box zone-box-new" id="new-task-today" (keydown.enter)="newTask(1,$event)"><input style="outline:none;border:none;" [(ngModel)]="newTaskTodayTitle" /></div>
+
         </div>
 
-        <div class="zone-box zone-box-new" contentEditable="true" (keydown.enter)="saveTask(1,$event)"
-        >New</div>
-        <mat-menu #rightMenu="matMenu" yPosition="below">
-            <button mat-menu-item>Finish</button>
-        </mat-menu>
       </div>
-    </div>
 
 
-    <!--
-    <div class="zone-container">
-      <h2>This week</h2>
 
-      <div
-        cdkDropList
-        #weekList="cdkDropList"
-        [cdkDropListData]="week"
-        [cdkDropListConnectedTo]="[todayList,nextList]"
-        class="zone-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="zone-box" *ngFor="let item of week" cdkDrag>{{item}}</div>
+      <div class="zone-container">
+        <h2>This week</h2>
+
+        <div cdkDropList #weekList="cdkDropList" [cdkDropListData]="week" [cdkDropListConnectedTo]="[todayList,nextList]" class="zone-list" (cdkDropListDropped)="drop($event)">
+          <div class="zone-box" [ngClass]="classCategoryandPriority(item)" *ngFor="let item of week" cdkDrag (click)="openBottomSheet(item)">{{item.title}}</div>
+          <div class="zone-box zone-box-new" id="new-task-week" (keydown.enter)="newTask(2,$event)"><input style="outline:none;border:none;" [(ngModel)]="newTaskWeekTitle" /></div>
+        </div>
       </div>
-    </div>
 
-    <div class="zone-container">
-      <h2>Next</h2>
+      <div class="zone-container">
+        <h2>Next</h2>
 
-      <div
-        cdkDropList
-        #nextList="cdkDropList"
-        [cdkDropListData]="next"
-        [cdkDropListConnectedTo]="[todayList,weekList]"
-        class="zone-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="zone-box" *ngFor="let item of next" cdkDrag>{{item}}</div>
+        <div cdkDropList #nextList="cdkDropList" [cdkDropListData]="next" [cdkDropListConnectedTo]="[todayList,weekList]" class="zone-list" (cdkDropListDropped)="drop($event)">
+          <div class="zone-box" [ngClass]="classCategoryandPriority(item)" *ngFor="let item of next" (click)="openBottomSheet(item)" cdkDrag>{{item.title}}</div>
+          <div class="zone-box zone-box-new" id="new-task-next" (keydown.enter)="newTask(3,$event)"><input style="outline:none;border:none;" [(ngModel)]="newTaskNextTitle" /></div>
+        </div>
       </div>
-    </div>-->
     </div>
   </mat-tab>
-  <mat-tab label="Archives">Archives</mat-tab>
+  <mat-tab label="Archives">
+
+    <app-table-archive></app-table-archive>
+  </mat-tab>
 
 </mat-tab-group>
