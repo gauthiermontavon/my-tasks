@@ -95,12 +95,41 @@ export class TaskService {
   }
 
   extractMetaFromTitle(title: string): Object {
-    var infosTitle = title.split(';');
+    let infosTitle = title.split(';');
+    let indexToRemoveFromInfoTitle = new Set();
+    let newTitle = '';
+    let retObj = { title: '', priority: 3, category: 0 };
     for (var i = 0; i < infosTitle.length; i++) {
       console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' + infosTitle[i]);
+
+      if (infosTitle[i].toString().match(/([p][1-3]{1})/g)) {
+        console.log('MATCH P');
+        retObj.priority = parseInt(infosTitle[i][1]);
+        indexToRemoveFromInfoTitle.add(i);
+      }
+      else if (infosTitle[i].toString().match(/([c][1-5]{1})/g)) {
+        console.log('MATCH C');
+        retObj.category = parseInt(infosTitle[i][1]);
+        indexToRemoveFromInfoTitle.add(i);
+      }
     }
 
-    return new Object();
+    for (var i = 0; i < infosTitle.length; i++) {
+      if (!indexToRemoveFromInfoTitle.has(i)) {
+        newTitle += infosTitle[i] + ';';
+      }
+    }
+    newTitle = newTitle.substring(0, newTitle.length);
+    retObj.title = newTitle;
+
+
+
+
+
+
+
+
+    return retObj;
 
 
 

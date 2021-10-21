@@ -131,7 +131,7 @@ export class PlanningComponent implements OnInit {
     if (zone == 2) { title = this.newTaskWeekTitle; }
     if (zone == 3) { title = this.newTaskNextTitle; }
     //let title = (event.target as HTMLElement).textContent;
-    let meta = null;
+    let meta: any = { title: '', priority: 3, category: 0 };
     if (title == null) { title = 'TITRE NON DEFINI'; }
     else {
       meta = this.taskService.extractMetaFromTitle(title);
@@ -139,9 +139,9 @@ export class PlanningComponent implements OnInit {
     console.log('meta ?:' + JSON.stringify(meta));
     const taskToAdd = {
       $loki: 0,
-      title: title.toString(),
-      priority: 3,
-      category: 0,
+      title: meta == null ? title.toString() : meta.title,
+      priority: meta == null ? 3 : meta.priority,
+      category: meta == null ? 0 : meta.category,
       history: [
         { since: 0, zone: zone, state: 0 }
       ]
