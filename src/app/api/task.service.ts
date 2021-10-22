@@ -119,7 +119,7 @@ export class TaskService {
         newTitle += infosTitle[i] + ';';
       }
     }
-    newTitle = newTitle.substring(0, newTitle.length);
+    newTitle = newTitle.substring(0, newTitle.length - 1);
     retObj.title = newTitle;
 
 
