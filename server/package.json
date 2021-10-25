@@ -1,0 +1,35 @@
+{
+  "name": "snaptun",
+  "version": "0.0.4",
+  "description": "lokijs http wrapper",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover tests/",
+	"start":"node demo.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:techfort/snaptun.git"
+  },
+  "keywords": [
+    "lokijs",
+    "http",
+    "api"
+  ],
+  "author": "joe minichino <joe.minichino@gmail.com>",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/techfort/snaptun/issues"
+  },
+  "homepage": "https://github.com/techfort/snaptun",
+  "dependencies": {
+    "body-parser": "^1.10.0",
+    "cors": "^2.8.5",
+    "express": "^4.10.6",
+    "gordian": "0.0.9",
+    "istanbul": "^0.3.5",
+    "jade": "^1.9.1",
+    "lokijs": "^1.1.15",
+    "mocha": "^2.1.0"
+  }
+}
